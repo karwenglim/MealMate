@@ -1,8 +1,8 @@
 import React from 'react';
-import searchIcon from '../../assets/images/search_icon.svg';
+import searchIcon from '../../../assets/images/search_icon.svg';
 import Image from 'next/image';
-import profileIcon from '../../assets/images/profile_icon.png';
-import cartIcon from '../../assets/images/cart_icon.svg';
+import profileIcon from '../../../assets/images/profile_icon.png';
+import cartIcon from '../../../assets/images/cart_icon.svg';
 function Header() {
   return (
     <div className='flex flex-row p-8 border-b-1 border-slate-300 sticky'>
