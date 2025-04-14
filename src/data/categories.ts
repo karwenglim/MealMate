@@ -1,4 +1,4 @@
-import { Category } from '../types/category';
+import { Category } from '../types/Category';
 import freshFruits from '../../assets/images/fresh_fruits_image.png';
 import organicVegetables from '../../assets/images/organic_vegetable_image.png';
 import coldDrinks from '../../assets/images/bottles_image.png';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Category } from '../../types/category';
+import { Category } from '../../types/Category';
 interface CardProp {
   category: Category;
 }
@@ -13,9 +13,11 @@ function Card({ category }: CardProp) {
       <Image
         src={category.icon}
         alt='categoryIcon'
-        className='h-45'
+        className='h-40 w-45'
       />
-      <div className='text-center'>{category.name}</div>
+      <div className='text-center text-[#313131] font-semibold'>
+        {category.name}
+      </div>
     </div>
   );
 }

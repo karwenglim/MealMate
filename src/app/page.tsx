@@ -1,10 +1,11 @@
 import React from 'react';
 import mainBanner from '../../assets/images/main_banner_bg.png';
 import Image from 'next/image';
-import Collections from '@/components/categories/collections';
+import CategoryCollections from '@/components/categories/collections';
+import BestSellerCollections from '@/components/products/collections';
 function Landing() {
   return (
-    <div className='py-10 px-20 flex flex-col gap-10'>
+    <div className='py-15 px-30 flex flex-col gap-10'>
       <div className='relative'>
         <Image
           alt='mainBanner'
@@ -25,7 +26,10 @@ function Landing() {
         </div>
       </div>
       <div>
-        <Collections />
+        <CategoryCollections />
+      </div>
+      <div>
+        <BestSellerCollections />
       </div>
     </div>
   );
