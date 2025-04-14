@@ -1,0 +1,52 @@
+import React from 'react';
+import searchIcon from '../../assets/images/search_icon.svg';
+import Image from 'next/image';
+import profileIcon from '../../assets/images/profile_icon.png';
+import cartIcon from '../../assets/images/cart_icon.svg';
+function Header() {
+  return (
+    <div className='flex flex-row p-8 border-b-1 border-slate-300 sticky'>
+      <div className='flex flex-row  w-full justify-between '>
+        <div className='text-3xl font-bold'>
+          <span className='text-blue-700 '>Meal</span>
+          <span className='text-yellow-500'>Mate</span>
+        </div>
+        <div className='flex flex-row gap-10 items-center justify-end basis-[60%]'>
+          <div className='rounded-full text-lg text-gray-500 py-2 px-3 border border-slate-300'>
+            Seller Dashboard
+          </div>
+          <div className='text-lg'>Home</div>
+          <div className='text-lg'>All Product</div>
+          <div className='relative'>
+            <input
+              type='text'
+              className='border border-slate-300 rounded-full p-2 pl-10 text-lg'
+              placeholder='Search for Product'
+            />
+            <Image
+              src={searchIcon}
+              alt='Search icon'
+              className='absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none'
+            />
+          </div>
+          <div>
+            <Image
+              src={cartIcon}
+              alt='Cart Icon'
+              className='w-7'
+            />
+          </div>
+          <div>
+            <Image
+              src={profileIcon}
+              alt='Profile Icon'
+              className='w-10'
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Header;
