@@ -1,7 +1,8 @@
 import { StaticImageData } from 'next/image';
 
 export interface Category {
-  name: string;
-  icon: StaticImageData;
-  colour: string;
+  text: string;
+  path: string;
+  image: StaticImageData;
+  bgColor: string;
 }

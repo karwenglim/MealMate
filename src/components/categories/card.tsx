@@ -9,14 +9,14 @@ function Card({ category }: CardProp) {
   return (
     <div
       className='flex flex-col p-5  rounded-xl'
-      style={{ backgroundColor: category.colour }}>
+      style={{ backgroundColor: category.bgColor }}>
       <Image
-        src={category.icon}
+        src={category.image}
         alt='categoryIcon'
         className='h-40 w-45'
       />
       <div className='text-center text-[#313131] font-semibold'>
-        {category.name}
+        {category.text}
       </div>
     </div>
   );

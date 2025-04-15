@@ -1,7 +1,8 @@
 import React from 'react';
-import { products } from '@/data/products';
+import { dummyProducts } from '../../../assets/images/assets';
 import Card from '../products/card';
 function Collections() {
+  const products = dummyProducts.slice(0, 6);
   return (
     <div className='flex flex-col gap-5'>
       <div className='text-4xl '>Best Seller</div>

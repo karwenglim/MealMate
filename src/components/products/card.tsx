@@ -15,7 +15,7 @@ function Card({ product }: CardProp) {
       <Image
         alt='productImg'
         className='h-40 w-45'
-        src={product.image}
+        src={product.image[0]}
       />
       <div className='flex flex-col gap-2'>
         <div className='flex flex-col gap-1'>
@@ -49,11 +49,11 @@ function Card({ product }: CardProp) {
 
         <div className='flex flex-row justify-between items-center '>
           <div className='text-[#4FBF8B] text-2xl'>RM{product.price}</div>
-          <div className='text-[#6CC99E] text-xl flex flex-row gap-2 items-center border border-[#6CC99E] rounded-lg p-2'>
+          <div className='text-[#6CC99E] text-xl flex flex-row gap-2 items-center border border-[#6CC99E] rounded-lg py-2 px-4 hover:cursor-pointer'>
             <Image
               alt='addToCartIcon'
               src={cartIcon}
-              className='w-5 h-5'
+              className='w-5 h-5 hover:text-white'
             />
             <div>Add</div>
           </div>
