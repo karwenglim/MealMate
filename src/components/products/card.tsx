@@ -1,17 +1,35 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import unratedStar from '../../../assets/images/star_dull_icon.svg';
 import ratedStar from '../../../assets/images/star_icon.svg';
 import { Product } from '@/types/Product';
 import cartIcon from '../../../assets/images/cart_icon.svg';
+import { useRouter } from 'next/navigation';
 interface CardProp {
   product: Product;
 }
 function Card({ product }: CardProp) {
+  const router = useRouter();
+  const handleOnClick = ({
+    category,
+    id,
+  }: {
+    category: string;
+    id: string;
+  }) => {
+    const lowercaseCategory = category.toLowerCase();
+    const productId = id;
+    return router.push(`/products/${lowercaseCategory}/${productId}`);
+  };
   const numRatedStar = product.ratings;
   const numUnratedStar = 5 - numRatedStar;
   return (
-    <div className='flex flex-col p-5   border border-slate-200 '>
+    <div
+      className='flex flex-col p-5 border border-slate-200'
+      onClick={() =>
+        handleOnClick({ category: product.category, id: product._id })
+      }>
       <Image
         alt='productImg'
         className='h-40 w-45'

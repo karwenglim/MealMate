@@ -3,7 +3,7 @@ import mainBanner from '../../assets/images/main_banner_bg.png';
 import { assets } from '../../assets/images/assets';
 import Image from 'next/image';
 import CategoryCollections from '@/components/categories/collections';
-import BestSellerCollections from '@/components/products/collections';
+import BestSellerCollections from '@/components/products/bestSellerCollections';
 function Landing() {
   return (
     <div className='py-15 px-30 flex flex-col gap-30'>

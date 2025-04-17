@@ -3,20 +3,27 @@ import searchIcon from '../../../assets/images/search_icon.svg';
 import Image from 'next/image';
 import profileIcon from '../../../assets/images/profile_icon.png';
 import navCartIcon from '../../../assets/images/nav_cart_icon.svg';
+import Link from 'next/link';
 function Header() {
   return (
     <div className='flex flex-row p-8 border-b-1 border-slate-300 sticky'>
       <div className='flex flex-row  w-full justify-between '>
-        <div className='text-3xl font-bold'>
-          <span className='text-blue-700 '>Meal</span>
-          <span className='text-yellow-500'>Mate</span>
+        <div className='text-3xl font-bold hover:cursor-pointer'>
+          <Link href='/'>
+            <span className='text-blue-700 '>Meal</span>
+            <span className='text-yellow-500'>Mate</span>
+          </Link>
         </div>
         <div className='flex flex-row gap-10 items-center justify-end basis-[60%]'>
           <div className='rounded-full text-lg text-gray-500 py-2 px-3 border border-slate-300'>
             Seller Dashboard
           </div>
-          <div className='text-lg'>Home</div>
-          <div className='text-lg'>All Product</div>
+          <div className='text-lg hover:cursor-pointer'>
+            <Link href='/'>Home</Link>
+          </div>
+          <div className='text-lg hover:cursor-pointer'>
+            <Link href='/products'>All Products</Link>
+          </div>
           <div className='relative'>
             <input
               type='text'
