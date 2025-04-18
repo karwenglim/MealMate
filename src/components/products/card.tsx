@@ -6,6 +6,7 @@ import ratedStar from '../../../assets/images/star_icon.svg';
 import { Product } from '@/types/Product';
 import cartIcon from '../../../assets/images/cart_icon.svg';
 import { useRouter } from 'next/navigation';
+
 interface CardProp {
   product: Product;
 }

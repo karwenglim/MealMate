@@ -18,7 +18,7 @@ export interface Product {
 //  {
 //     _id: 'ek53j34k',
 //     name: 'Banana 1 kg',
-//     category: 'Fruits',
+//     category: 'Indian',
 //     price: 50,
 //     offerPrice: 45,
 //     image: [banana_image_1],

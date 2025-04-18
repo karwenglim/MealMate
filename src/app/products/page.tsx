@@ -1,12 +1,12 @@
 import React from 'react';
 import GeneralCollections from '@/components/products/generalCollections';
 
-function page() {
+function Page() {
   return (
     <div className='py-15 px-30 flex flex-col w-full gap-30'>
-      <GeneralCollections />
+      <GeneralCollections category='' />
     </div>
   );
 }
 
-export default page;
+export default Page;
