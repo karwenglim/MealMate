@@ -4,7 +4,7 @@ import Card from './card';
 function Collections() {
   return (
     <div className='flex flex-col gap-5'>
-      <div className='text-4xl text-[#313131]'>Categories</div>
+      <div className='text-4xl text-[#36415F]'>Categories</div>
       <div className='flex flex-row gap-5 justify-between'>
         {categories.map((category, index) => (
           <Card

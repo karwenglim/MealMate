@@ -1,10 +1,22 @@
-import React from 'react';
+'use client';
+import React, { useRef } from 'react';
 import searchIcon from '../../../assets/images/search_icon.svg';
 import Image from 'next/image';
 import profileIcon from '../../../assets/images/profile_icon.png';
 import navCartIcon from '../../../assets/images/nav_cart_icon.svg';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 function Header() {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+
+  const handleInputChange = () => {
+    const value = inputRef.current?.value.trim();
+    if (value) {
+      router.push('/products');
+    }
+  };
+
   return (
     <div className='flex flex-row p-8 border-b-1 border-slate-300 sticky'>
       <div className='flex flex-row  w-full justify-between '>
@@ -24,16 +36,18 @@ function Header() {
           <div className='text-lg hover:cursor-pointer'>
             <Link href='/products'>All Products</Link>
           </div>
-          <div className='relative'>
+          <div className='flex flex-row gap-4'>
             <input
               type='text'
-              className='border border-slate-300 rounded-full p-2 pl-10 text-lg'
+              className='border border-slate-300 rounded-full py-2 px-5 text-lg'
               placeholder='Search for Product'
+              ref={inputRef}
+              onChange={handleInputChange}
             />
             <Image
               src={searchIcon}
               alt='Search icon'
-              className='absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none'
+              className='ml-auto'
             />
           </div>
           <div>

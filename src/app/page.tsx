@@ -13,15 +13,16 @@ function Landing() {
           src={mainBanner}
         />
         <div className='absolute inset-0 flex gap-10 flex-col items-start justify-center pl-10'>
-          <div className='text-[#313131] text-5xl font-semibold mb-4'>
+          <div className='text-[#36415F] w-120 text-5xl font-semibold mb-4'>
             Authentic Campus Eats, Just a Tap Away!
           </div>
           <div className='flex flex-row gap-5 items-center justify-center'>
-            <div className='cursor-pointer text-lg bg-blue-500 text-white px-4 py-2 rounded-lg'>
+            <div className='cursor-pointer text-lg bg-[#4FBF8B] hover:bg-green-600 transition ease-in-out text-white px-8 py-3 rounded-lg'>
               Shop Now
             </div>
-            <div className='cursor-pointer text-lg bg-green-500 text-white px-4 py-2 rounded-lg'>
-              Explore Deals
+            <div className='cursor-pointer text-lg  text-[#36415F] px-4 py-2 font-semibold rounded-lg'>
+              Explore Deals{' '}
+              <span className='ml-2 text-lg font-bold'>&#8594;</span>
             </div>
           </div>
         </div>
@@ -51,9 +52,12 @@ function Landing() {
               className='w-15 h-15'
             />
             <div className='flex flex-col'>
-              <div className='font-semibold text-xl'>Fastest Delivery</div>
+              <div className='font-semibold text-[#36415F] text-xl'>
+                Convenient Campus Eats
+              </div>
               <div className=' text-lg text-gray-500'>
-                Groceries delivered in under 30 minutes.
+                Order your favorite meals right from your campus, and have them
+                delivered to your door in no time!
               </div>
             </div>
           </div>
@@ -64,9 +68,12 @@ function Landing() {
               className='w-15 h-15'
             />
             <div className='flex flex-col'>
-              <div className='font-semibold text-xl'>Freshness Guaranteed</div>
+              <div className='font-semibold text-[#36415F] text-xl'>
+                A Taste of Campus Life
+              </div>
               <div className=' text-lg text-gray-500'>
-                Fresh produce straight from the source.
+                Supporting local vendors, we bring campus favorites straight to
+                you, with just a few taps.
               </div>
             </div>
           </div>
@@ -77,9 +84,12 @@ function Landing() {
               className='w-15 h-15'
             />
             <div className='flex flex-col'>
-              <div className='font-semibold text-xl'>Affordable Prices</div>
+              <div className='font-semibold text-[#36415F] text-xl'>
+                Fast. Easy. Delicious.
+              </div>
               <div className=' text-lg text-gray-500'>
-                Quality groceries at unbeatable prices.
+                Skip the lines, enjoy the food—our platform makes ordering food
+                around campus quicker and simpler.
               </div>
             </div>
           </div>
@@ -90,9 +100,12 @@ function Landing() {
               className='w-15 h-15'
             />
             <div className='flex flex-col'>
-              <div className='font-semibold text-xl'>Trusted by Thousands</div>
+              <div className='font-semibold text-[#36415F] text-xl'>
+                Discover Campus Flavors
+              </div>
               <div className='text-lg text-gray-500'>
-                Loved by 10,000+ happy customers.
+                Explore a variety of delicious options from your favorite campus
+                vendors—one platform, endless choices.
               </div>
             </div>
           </div>

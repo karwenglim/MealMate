@@ -1,34 +1,35 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { dummyProducts } from '../../../assets/images/assets';
 import Card from './card';
 import { Product } from '@/types/Product';
+import { Category } from '@/types/Category';
 
 interface collectionProp {
-  category: string;
+  category?: Category;
 }
-function GeneralCollections({ category = '' }: collectionProp) {
-  const getChunkedProducts = (products: Product[]) => {
+function GeneralCollections({ category }: collectionProp) {
+  const filteredProducts = useMemo(() => {
+    if (!category) {
+      return dummyProducts;
+    }
+    return dummyProducts.filter(
+      (product) => product.category === category.path
+    );
+  }, [category]);
+
+  const getChunkedProducts = useCallback((products: Product[]) => {
     const chunks: Product[][] = [];
     for (let i = 0; i < products.length; i = i + 5) {
       chunks.push(products.slice(i, i + 5));
     }
     return chunks;
-  };
+  }, []);
 
-  let displayedProducts: Product[][] = [];
-
-  if (category.length === 0) {
-    displayedProducts = getChunkedProducts(dummyProducts);
-  } else {
-    const filteredProducts = dummyProducts.filter(
-      (product) => product.category === category
-    );
-    displayedProducts = getChunkedProducts(filteredProducts);
-  }
+  const displayedProducts = getChunkedProducts(filteredProducts);
 
   return (
     <div className='flex flex-col gap-10'>
-      <div className='text-4xl'>All Products</div>
+      <div className='text-4xl'>{category?.text || 'All Products'}</div>
       <div className='flex flex-col gap-20'>
         {displayedProducts.map((group, idx) => (
           <div

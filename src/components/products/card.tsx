@@ -33,7 +33,7 @@ function Card({ product }: CardProp) {
       }>
       <Image
         alt='productImg'
-        className='h-40 w-45'
+        className='h-40 w-45 transition-transform duration-300 ease-in-out transform hover:scale-110'
         src={product.image[0]}
       />
       <div className='flex flex-col gap-2'>
