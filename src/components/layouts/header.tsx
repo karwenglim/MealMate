@@ -9,16 +9,12 @@ import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/lib/hooks';
 import { setQuery } from '@/lib/features/query/querySlice';
-import { selectUser } from '@/lib/features/user/userSlice';
+import { getTotalQty } from '@/lib/features/user/userSlice';
 import { useParams } from 'next/navigation';
 function Header() {
   const dispatch = useDispatch();
   const params = useParams();
-  const user = useAppSelector(selectUser);
-  const cart = user.cart;
-  const totalQty = cart.reduce(function (acc, cartItem) {
-    return acc + cartItem.quantity;
-  }, 0);
+  const totalQty = useAppSelector(getTotalQty);
   const category = params?.category;
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -32,8 +28,10 @@ function Header() {
     } else router.push('/products');
   };
 
+  const toOrdersPage = () => router.replace('/my-orders');
+
   return (
-    <div className='flex flex-row p-8 border-b-1 border-slate-300 sticky'>
+    <div className='flex flex-row p-8 w-full border-b-1 border-slate-300 sticky'>
       <div className='flex flex-row  w-full justify-between '>
         <div className='text-3xl font-bold hover:cursor-pointer'>
           <Link href='/'>
@@ -65,17 +63,22 @@ function Header() {
               className='ml-auto'
             />
           </div>
-          <div className='relative'>
-            <Image
-              src={navCartIcon}
-              alt='Cart Icon'
-              className='w-7'
-            />
-            <div className='bg-[#4FBF8B] text-white w-6 h-6 text-center rounded-full absolute -right-4 -top-4'>
-              {totalQty}
+          <Link href='/cart'>
+            <div className='relative hover:cursor-pointer'>
+              <Image
+                src={navCartIcon}
+                alt='Cart Icon'
+                className='w-7'
+              />
+              <div className='bg-[#4FBF8B] text-white w-6 h-6 text-center rounded-full absolute -right-4 -top-4'>
+                {totalQty}
+              </div>
             </div>
-          </div>
-          <div>
+          </Link>
+
+          <div
+            onClick={toOrdersPage}
+            className='hover:cursor-pointer'>
             <Image
               src={profileIcon}
               alt='Profile Icon'

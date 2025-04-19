@@ -1,6 +1,6 @@
 'use client';
 import React, { useMemo } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { dummyProducts } from '../../../../../assets/images/assets';
 import Image, { StaticImageData } from 'next/image';
 import unratedStar from '../../../../../assets/images/star_dull_icon.svg';
@@ -12,9 +12,9 @@ import { useAppSelector } from '@/lib/hooks';
 import { selectUser } from '@/lib/features/user/userSlice';
 import { Product } from '@/types/Product';
 function ProductPage() {
+  const router = useRouter();
   const user = useAppSelector(selectUser);
   const cart = user.cart;
-  console.log(user);
   const dispatch = useDispatch();
   const { category, productId } = useParams() as {
     category: string;
@@ -31,11 +31,13 @@ function ProductPage() {
   }, [cart, productId]);
 
   const handleClickAddToCart = (product: Product) => {
-    console.log('clicked Add To Cart');
     if (!product) return;
     dispatch(addToCart(product));
   };
 
+  const handleClickBuyNow = () => {
+    router.push('/cart');
+  };
   const handleClickRemoveFromCart = (product: Product) => {
     if (!product) return;
     if (!existingProductInCart) return;
@@ -144,13 +146,13 @@ function ProductPage() {
                 // onClick={() => handleClickAddToCart(foundProduct)}
                 className='bg-gray-200 justify-between rounded-lg flex  p-5 text-[#36415F] w-100 text-center hover:bg-gray-300 hover:cursor-pointer transition-all ease-in-out'>
                 <div
-                  className='text-4xl'
+                  className='text-2xl'
                   onClick={() => handleClickRemoveFromCart(foundProduct)}>
                   -
                 </div>
                 <div className='text-2xl'>{existingProductInCart.quantity}</div>
                 <div
-                  className='text-4xl'
+                  className='text-2xl'
                   onClick={() => handleClickAddToCart(foundProduct)}>
                   +
                 </div>
@@ -163,7 +165,9 @@ function ProductPage() {
               </div>
             )}
 
-            <div className='bg-[#6CC99E] rounded-lg text-lg text-white p-5 text-center w-100 hover:bg-[#4FBF8B] hover:cursor-pointer transition-all ease-in-out '>
+            <div
+              onClick={handleClickBuyNow}
+              className='bg-[#6CC99E] rounded-lg text-lg text-white p-5 text-center w-100 hover:bg-[#4FBF8B] hover:cursor-pointer transition-all ease-in-out '>
               Buy Now
             </div>
           </div>
