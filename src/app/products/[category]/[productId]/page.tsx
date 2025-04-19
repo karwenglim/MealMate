@@ -1,20 +1,46 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { dummyProducts } from '../../../../../assets/images/assets';
 import Image, { StaticImageData } from 'next/image';
 import unratedStar from '../../../../../assets/images/star_dull_icon.svg';
 import ratedStar from '../../../../../assets/images/star_icon.svg';
 import Card from '@/components/products/card';
-function Product() {
+import { useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from '@/lib/features/user/userSlice';
+import { useAppSelector } from '@/lib/hooks';
+import { selectUser } from '@/lib/features/user/userSlice';
+import { Product } from '@/types/Product';
+function ProductPage() {
+  const user = useAppSelector(selectUser);
+  const cart = user.cart;
+  console.log(user);
+  const dispatch = useDispatch();
   const { category, productId } = useParams() as {
     category: string;
     productId: string;
   };
 
-  const foundProduct = dummyProducts.find(
-    (product) => product._id === productId
-  );
+  const foundProduct = useMemo(() => {
+    return dummyProducts.find((product) => product._id === productId);
+  }, [productId]);
+
+  // Memoized product in cart
+  const existingProductInCart = useMemo(() => {
+    return cart.find((product) => product._id === productId);
+  }, [cart, productId]);
+
+  const handleClickAddToCart = (product: Product) => {
+    console.log('clicked Add To Cart');
+    if (!product) return;
+    dispatch(addToCart(product));
+  };
+
+  const handleClickRemoveFromCart = (product: Product) => {
+    if (!product) return;
+    if (!existingProductInCart) return;
+    dispatch(removeFromCart(product));
+  };
 
   const firstLetterCategory = category.charAt(0);
   const capitalisedFirst = firstLetterCategory.toUpperCase();
@@ -27,6 +53,13 @@ function Product() {
 
   const numRatedStar = foundProduct?.ratings as number;
   const numUnratedStar = 5 - numRatedStar;
+  if (!foundProduct) {
+    return (
+      <div className='py-15 px-30 flex flex-col gap-10 w-full'>
+        <h1 className='text-red-500'>Product not found.</h1>;
+      </div>
+    );
+  }
   return (
     <div className='py-15 px-30 flex flex-col gap-10 w-full'>
       <div className='text-lg text-[#36415F] font-[400] font-outfit '>
@@ -106,9 +139,29 @@ function Product() {
             </ul>
           </div>
           <div className='flex flex-row w-full gap-10'>
-            <div className='bg-gray-200 rounded-lg text-lg p-5 text-[#36415F] w-100 text-center hover:bg-gray-300 hover:cursor-pointer transition-all ease-in-out'>
-              Add to Cart
-            </div>
+            {existingProductInCart ? (
+              <div
+                // onClick={() => handleClickAddToCart(foundProduct)}
+                className='bg-gray-200 justify-between rounded-lg flex  p-5 text-[#36415F] w-100 text-center hover:bg-gray-300 hover:cursor-pointer transition-all ease-in-out'>
+                <div
+                  className='text-4xl'
+                  onClick={() => handleClickRemoveFromCart(foundProduct)}>
+                  -
+                </div>
+                <div className='text-2xl'>{existingProductInCart.quantity}</div>
+                <div
+                  className='text-4xl'
+                  onClick={() => handleClickAddToCart(foundProduct)}>
+                  +
+                </div>
+              </div>
+            ) : (
+              <div
+                onClick={() => handleClickAddToCart(foundProduct)}
+                className='bg-gray-200 rounded-lg text-lg p-5 text-[#36415F] w-100 text-center hover:bg-gray-300 hover:cursor-pointer transition-all ease-in-out'>
+                Add to Cart
+              </div>
+            )}
 
             <div className='bg-[#6CC99E] rounded-lg text-lg text-white p-5 text-center w-100 hover:bg-[#4FBF8B] hover:cursor-pointer transition-all ease-in-out '>
               Buy Now
@@ -134,4 +187,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default ProductPage;

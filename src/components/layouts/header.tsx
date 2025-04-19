@@ -7,11 +7,18 @@ import navCartIcon from '../../../assets/images/nav_cart_icon.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
+import { useAppSelector } from '@/lib/hooks';
 import { setQuery } from '@/lib/features/query/querySlice';
+import { selectUser } from '@/lib/features/user/userSlice';
 import { useParams } from 'next/navigation';
 function Header() {
   const dispatch = useDispatch();
   const params = useParams();
+  const user = useAppSelector(selectUser);
+  const cart = user.cart;
+  const totalQty = cart.reduce(function (acc, cartItem) {
+    return acc + cartItem.quantity;
+  }, 0);
   const category = params?.category;
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -58,12 +65,15 @@ function Header() {
               className='ml-auto'
             />
           </div>
-          <div>
+          <div className='relative'>
             <Image
               src={navCartIcon}
               alt='Cart Icon'
               className='w-7'
             />
+            <div className='bg-[#4FBF8B] text-white w-6 h-6 text-center rounded-full absolute -right-4 -top-4'>
+              {totalQty}
+            </div>
           </div>
           <div>
             <Image

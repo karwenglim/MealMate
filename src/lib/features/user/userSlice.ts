@@ -3,11 +3,29 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '@/lib/store';
 import { Product } from '@/types/Product';
 
+// export interface Product {
+//   _id: string;
+//   name: string;
+//   category: string;
+//   price: number;
+//   offerPrice: number;
+//   image: StaticImageData[];
+//   description: string[];
+//   ratings: number;
+//   createdAt: string;
+//   updatedAt: string;
+//   inStock: boolean;
+//   seller: string;
+// }
+interface ProductInCart extends Product {
+  quantity: number;
+}
+
 interface UserState {
   id: string;
   email: string;
   password: string;
-  cart: Product[];
+  cart: ProductInCart[];
   unitNumber: string;
   street: string;
   city: string;
@@ -61,12 +79,38 @@ export const userSlice = createSlice({
       state.phoneNumber = action.payload;
     },
     addToCart: (state, action: PayloadAction<Product>) => {
-      state.cart.push(action.payload);
+      const foundProduct = state.cart.find(
+        (cartProduct) => cartProduct._id === action.payload._id
+      );
+      if (foundProduct) {
+        state.cart = state.cart.map((cartProduct) =>
+          cartProduct._id === action.payload._id
+            ? { ...cartProduct, quantity: cartProduct.quantity + 1 }
+            : cartProduct
+        );
+      } else {
+        const formattedProduct = { ...action.payload, quantity: 1 };
+        state.cart.push(formattedProduct);
+      }
     },
     removeFromCart: (state, action: PayloadAction<Product>) => {
-      state.cart = state.cart.filter(
-        (cartItem) => cartItem._id !== action.payload._id
+      const foundProduct = state.cart.find(
+        (cartProduct) => cartProduct._id === action.payload._id
       );
+      if (foundProduct) {
+        const foundProductQty = foundProduct.quantity;
+        if (foundProductQty === 1) {
+          state.cart = state.cart.filter(
+            (cartItem) => cartItem._id !== action.payload._id
+          );
+        } else {
+          state.cart = state.cart.map((cartItem) =>
+            cartItem._id === action.payload._id
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
+              : cartItem
+          );
+        }
+      }
     },
     removeAllFromCart: (state) => {
       state.cart = [];

@@ -68,11 +68,18 @@ function Card({ product }: CardProp) {
 
         <div className='flex flex-row justify-between items-center '>
           <div className='text-[#4FBF8B] text-2xl'>RM{product.price}</div>
-          <div className='text-[#6CC99E] text-xl flex flex-row gap-2 items-center border border-[#6CC99E] rounded-lg py-2 px-4 hover:cursor-pointer'>
+          <div
+            onClick={() =>
+              handleOnClick({
+                category: product.category,
+                id: product._id,
+              })
+            }
+            className='text-[#6CC99E] text-xl flex flex-row gap-2 items-center border border-[#6CC99E] rounded-lg py-2 px-4 hover:cursor-pointer'>
             <Image
               alt='addToCartIcon'
               src={cartIcon}
-              className='w-5 h-5 hover:text-white'
+              className='w-5 h-5'
             />
             <div>Add</div>
           </div>
