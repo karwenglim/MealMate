@@ -6,15 +6,23 @@ import profileIcon from '../../../assets/images/profile_icon.png';
 import navCartIcon from '../../../assets/images/nav_cart_icon.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { setQuery } from '@/lib/features/query/querySlice';
+import { useParams } from 'next/navigation';
 function Header() {
+  const dispatch = useDispatch();
+  const params = useParams();
+  const category = params?.category;
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   const handleInputChange = () => {
-    const value = inputRef.current?.value.trim();
-    if (value) {
-      router.push('/products');
-    }
+    const value = inputRef.current?.value.trim() as string;
+    dispatch(setQuery(value));
+
+    if (value && category) {
+      router.push(`/products/${category}`);
+    } else router.push('/products');
   };
 
   return (
