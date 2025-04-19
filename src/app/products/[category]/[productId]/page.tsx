@@ -123,10 +123,6 @@ function ProductPage() {
             <div className='text-gray-400 line-through'>
               Original Price : RM{foundProduct?.price}
             </div>
-            <div className='text-3xl text-[#36415F]'>
-              Offer Price : RM{foundProduct?.offerPrice}
-            </div>
-            <div className='text-gray-400'>(inclusive of all taxes)</div>
           </div>
           <div className='flex flex-col gap-1'>
             <div className='text-[#36415F] font-semibold'>About Product</div>
