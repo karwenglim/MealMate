@@ -120,8 +120,8 @@ function ProductPage() {
             </div>
           </div>
           <div className='flex flex-col gap-1'>
-            <div className='text-gray-400 line-through'>
-              Original Price : RM{foundProduct?.price}
+            <div className='text-3xl text-[#36415F]'>
+              Price : RM{foundProduct?.price}
             </div>
           </div>
           <div className='flex flex-col gap-1'>
