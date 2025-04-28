@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '../components/layouts/header';
 import Footer from '../components/layouts/footer';
 import StoreProvider from './StoreProvider';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,6 +24,7 @@ export default function RootLayout({
           </div>
 
           <div className='flex-1 bg-white'>{children}</div>
+          <Analytics />
 
           <div className='mt-auto'>
             <Footer />
