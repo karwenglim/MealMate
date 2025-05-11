@@ -16,6 +16,7 @@ export interface Order extends ProductInCart {
 }
 
 interface UserState {
+  role: string;
   id: string;
   email: string;
   password: string;
@@ -34,6 +35,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
+  role: '',
   id: '',
   email: '',
   password: '',
@@ -75,6 +77,9 @@ export const userSlice = createSlice({
   reducers: {
     setId: (state, action: PayloadAction<string>) => {
       state.id = action.payload;
+    },
+    setRole: (state, action: PayloadAction<string>) => {
+      state.role = action.payload;
     },
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
@@ -229,6 +234,7 @@ export const {
   removeProductFromCart,
   addToOrders,
   setPaymentMethod,
+  setRole,
   removeAllFromCart,
 } = userSlice.actions;
 
@@ -260,5 +266,6 @@ export const getAddress = createSelector([selectUser], (user) => ({
 }));
 export const getOrders = (state: RootState) => state.user.orders;
 export const getPaymentMethod = (state: RootState) => state.user.paymentMethod;
+export const getRole = (state: RootState) => state.user.role;
 
 export default userSlice.reducer;

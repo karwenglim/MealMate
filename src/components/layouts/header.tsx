@@ -11,6 +11,8 @@ import { useAppSelector } from '@/lib/hooks';
 import { setQuery } from '@/lib/features/query/querySlice';
 import { getTotalQty } from '@/lib/features/user/userSlice';
 import { useParams } from 'next/navigation';
+import { getRole } from '@/lib/features/user/userSlice';
+
 function Header() {
   const dispatch = useDispatch();
   const params = useParams();
@@ -18,7 +20,7 @@ function Header() {
   const category = params?.category;
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-
+  const role = useAppSelector(getRole);
   const handleInputChange = () => {
     const value = inputRef.current?.value.trim() as string;
     dispatch(setQuery(value));
@@ -34,20 +36,22 @@ function Header() {
     <div className='flex flex-row p-8 w-full border-b-1 border-slate-300 sticky'>
       <div className='flex flex-row  w-full justify-between '>
         <div className='text-3xl font-bold hover:cursor-pointer'>
-          <Link href='/'>
+          <Link href='/landing'>
             <span className='text-blue-700 '>Meal</span>
             <span className='text-yellow-500'>Mate</span>
           </Link>
         </div>
         <div className='flex flex-row gap-10 items-center justify-end basis-[60%] hover:cursor-pointer'>
-          <Link href='/seller'>
-            <div className='rounded-full text-lg text-gray-500 py-2 px-3 border border-slate-300'>
-              Seller Dashboard
-            </div>
-          </Link>
+          {role === 'seller' && (
+            <Link href='/seller'>
+              <div className='rounded-full text-lg text-gray-500 py-2 px-3 border border-slate-300'>
+                Seller Dashboard
+              </div>
+            </Link>
+          )}
 
           <div className='text-lg hover:cursor-pointer'>
-            <Link href='/'>Home</Link>
+            <Link href='/landing'>Home</Link>
           </div>
           <div className='text-lg hover:cursor-pointer'>
             <Link href='/products'>All Products</Link>

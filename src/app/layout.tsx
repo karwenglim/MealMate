@@ -1,9 +1,10 @@
+// app/layout.tsx
 import type { Metadata } from 'next';
 import './globals.css';
-import Header from '../components/layouts/header';
-import Footer from '../components/layouts/footer';
+
 import StoreProvider from './StoreProvider';
 import { Analytics } from '@vercel/analytics/next';
+import LayoutClientWrapper from './layoutClientWrapper';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,16 +20,8 @@ export default function RootLayout({
     <html lang='en'>
       <body className='font-outfit min-h-screen flex flex-col max-w-screen'>
         <StoreProvider>
-          <div className='flex mb-auto'>
-            <Header />
-          </div>
-
-          <div className='flex-1 flex bg-white'>{children}</div>
+          <LayoutClientWrapper>{children}</LayoutClientWrapper>
           <Analytics />
-
-          <div className='mt-auto'>
-            <Footer />
-          </div>
         </StoreProvider>
       </body>
     </html>
