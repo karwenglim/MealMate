@@ -37,8 +37,8 @@ function Header() {
       <div className='flex flex-row  w-full justify-between '>
         <div className='text-3xl font-bold hover:cursor-pointer'>
           <Link href='/landing'>
-            <span className='text-blue-700 '>Meal</span>
-            <span className='text-yellow-500'>Mate</span>
+            <span className='text-emerald-700'>Meal</span>
+            <span className='text-teal-600'>Mate</span>
           </Link>
         </div>
         <div className='flex flex-row gap-10 items-center justify-end basis-[60%] hover:cursor-pointer'>
