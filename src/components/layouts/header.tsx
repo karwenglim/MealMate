@@ -39,10 +39,13 @@ function Header() {
             <span className='text-yellow-500'>Mate</span>
           </Link>
         </div>
-        <div className='flex flex-row gap-10 items-center justify-end basis-[60%]'>
-          <div className='rounded-full text-lg text-gray-500 py-2 px-3 border border-slate-300'>
-            Seller Dashboard
-          </div>
+        <div className='flex flex-row gap-10 items-center justify-end basis-[60%] hover:cursor-pointer'>
+          <Link href='/seller'>
+            <div className='rounded-full text-lg text-gray-500 py-2 px-3 border border-slate-300'>
+              Seller Dashboard
+            </div>
+          </Link>
+
           <div className='text-lg hover:cursor-pointer'>
             <Link href='/'>Home</Link>
           </div>
