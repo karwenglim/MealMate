@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 const SellerLogin = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSigningUp] = useState(false);
@@ -74,7 +73,7 @@ const SellerLogin = () => {
         ? 'bg-violet-500 bg-opacity-50 cursor-not-allowed text-white'
         : 'bg-violet-500 text-white hover:scale-[1.01] active:scale-[.98] active:duration-75'
     }`}>
-                {isSigningUp ? 'Registering...' : 'Register'}
+                {isSigningUp ? 'Logging In...' : 'Log In'}
               </button>
             </div>
             <div className='mt-8 flex justify-center items-center'>
