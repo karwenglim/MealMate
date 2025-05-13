@@ -62,7 +62,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
         </div>
         <div>{order.address.street}</div>
         <div>
-          {order.address.city},{order.address.zipcode}
+          {order.address.city}, {order.address.zipcode}
         </div>
         <div>{order.address.state}</div>
         <div>0{order.address.phone}</div>

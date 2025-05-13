@@ -13,54 +13,18 @@ function valueFormatter(number: number) {
 }
 
 const data = [
-  {
-    date: 'Jan 23',
-    Revenue: 38560,
-  },
-  {
-    date: 'Feb 23',
-    Revenue: 40320,
-  },
-  {
-    date: 'Mar 23',
-    Revenue: 50233,
-  },
-  {
-    date: 'Apr 23',
-    Revenue: 55123,
-  },
-  {
-    date: 'May 23',
-    Revenue: 56000,
-  },
-  {
-    date: 'Jun 23',
-    Revenue: 100000,
-  },
-  {
-    date: 'Jul 23',
-    Revenue: 85390,
-  },
-  {
-    date: 'Aug 23',
-    Revenue: 80100,
-  },
-  {
-    date: 'Sep 23',
-    Revenue: 75090,
-  },
-  {
-    date: 'Oct 23',
-    Revenue: 71080,
-  },
-  {
-    date: 'Nov 23',
-    Revenue: 68041,
-  },
-  {
-    date: 'Dec 23',
-    Revenue: 60143,
-  },
+  { date: 'Jan 23', Revenue: 186 },
+  { date: 'Feb 23', Revenue: 194 },
+  { date: 'Mar 23', Revenue: 242 },
+  { date: 'Apr 23', Revenue: 265 },
+  { date: 'May 23', Revenue: 270 },
+  { date: 'Jun 23', Revenue: 481 },
+  { date: 'Jul 23', Revenue: 411 },
+  { date: 'Aug 23', Revenue: 386 },
+  { date: 'Sep 23', Revenue: 361 },
+  { date: 'Oct 23', Revenue: 342 },
+  { date: 'Nov 23', Revenue: 327 },
+  { date: 'Dec 23', Revenue: 289 },
 ];
 
 function RevenueChart() {
@@ -72,7 +36,7 @@ function RevenueChart() {
             Revenue Breakdown
           </p>
           <p className='text-2xl font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong'>
-            RM60,143
+            RM4,000
           </p>
           <AreaChart
             data={data}

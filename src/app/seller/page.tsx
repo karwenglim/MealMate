@@ -4,6 +4,7 @@ import SelectionPanel from '@/components/seller/selectionPanel';
 import Analytics from '@/components/seller/analytics';
 import Orders from '@/components/seller/orders';
 import ProductList from '@/components/seller/productList';
+import AddProduct from '@/components/seller/addProduct';
 function SellerPage() {
   const [selectedPanel, setSelectedPanel] = useState('analytics');
   const handleClickPanel = (panelChoice: string) => {
@@ -24,6 +25,8 @@ function SellerPage() {
           <Orders />
         ) : selectedPanel === 'product_list' ? (
           <ProductList />
+        ) : selectedPanel === 'add_product' ? (
+          <AddProduct />
         ) : null}
       </div>
     </div>

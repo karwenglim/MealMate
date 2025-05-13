@@ -11,21 +11,21 @@ function classNames(...classes: any) {
 const data = [
   {
     name: 'Success',
-    amount: 2095920,
+    amount: 4000,
     share: '80%',
     href: '#',
     borderColor: 'bg-green-600',
   },
   {
     name: 'Pending',
-    amount: 250120,
+    amount: 750,
     share: '15%',
     href: '#',
     borderColor: 'bg-orange-400',
   },
   {
     name: 'Failed',
-    amount: 140110,
+    amount: 250,
     share: '5%',
     href: '#',
     borderColor: 'bg-pink-500',

@@ -4,18 +4,18 @@ import { AreaChart } from '@tremor/react';
 import { Card } from '@/components/tremor/Card';
 
 const data = [
-  { date: 'Jan 23', 'Unique Visitors': 6200, 'Returning Visitors': 4000 },
-  { date: 'Feb 23', 'Unique Visitors': 9800, 'Returning Visitors': 5300 },
-  { date: 'Mar 23', 'Unique Visitors': 10400, 'Returning Visitors': 5700 },
-  { date: 'Apr 23', 'Unique Visitors': 11200, 'Returning Visitors': 5900 },
-  { date: 'May 23', 'Unique Visitors': 16500, 'Returning Visitors': 8300 },
-  { date: 'Jun 23', 'Unique Visitors': 13800, 'Returning Visitors': 6700 },
-  { date: 'Jul 23', 'Unique Visitors': 14900, 'Returning Visitors': 7230 },
-  { date: 'Aug 23', 'Unique Visitors': 17400, 'Returning Visitors': 10700 },
-  { date: 'Sep 23', 'Unique Visitors': 19200, 'Returning Visitors': 12500 },
-  { date: 'Oct 23', 'Unique Visitors': 20000, 'Returning Visitors': 12230 },
-  { date: 'Nov 23', 'Unique Visitors': 26000, 'Returning Visitors': 16200 },
-  { date: 'Dec 23', 'Unique Visitors': 34500, 'Returning Visitors': 24600 },
+  { date: 'Jan 23', 'Unique Visitors': 120, 'Returning Visitors': 80 },
+  { date: 'Feb 23', 'Unique Visitors': 150, 'Returning Visitors': 100 },
+  { date: 'Mar 23', 'Unique Visitors': 180, 'Returning Visitors': 110 },
+  { date: 'Apr 23', 'Unique Visitors': 190, 'Returning Visitors': 120 },
+  { date: 'May 23', 'Unique Visitors': 220, 'Returning Visitors': 140 },
+  { date: 'Jun 23', 'Unique Visitors': 100, 'Returning Visitors': 70 }, // semester break
+  { date: 'Jul 23', 'Unique Visitors': 130, 'Returning Visitors': 90 },
+  { date: 'Aug 23', 'Unique Visitors': 200, 'Returning Visitors': 150 },
+  { date: 'Sep 23', 'Unique Visitors': 240, 'Returning Visitors': 170 },
+  { date: 'Oct 23', 'Unique Visitors': 250, 'Returning Visitors': 160 },
+  { date: 'Nov 23', 'Unique Visitors': 270, 'Returning Visitors': 180 },
+  { date: 'Dec 23', 'Unique Visitors': 180, 'Returning Visitors': 120 }, // semester break
 ];
 
 const valueFormatter = (number: number) =>
@@ -46,7 +46,7 @@ export default function Example() {
                 <p className='text-tremor-default text-tremor-content dark:text-dark-tremor-content'>
                   <span className='size-3 shrink-0 rounded-sm bg-green-500' />{' '}
                   <span className='font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong'>
-                    29,790
+                    1,490
                   </span>{' '}
                   Returning Visitors
                 </p>
@@ -58,7 +58,7 @@ export default function Example() {
                 />
                 <p className='text-tremor-default text-tremor-content dark:text-dark-tremor-content'>
                   <span className='font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong'>
-                    1,397
+                    2,230
                   </span>{' '}
                   Unique Visitors
                 </p>
