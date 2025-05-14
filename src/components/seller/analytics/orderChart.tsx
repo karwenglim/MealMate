@@ -54,10 +54,10 @@ function OrderStatusChart() {
             category='name'
             valueFormatter={currencyFormatter}
             showTooltip={false}
-            className='h-40 mt-10'
+            className='h-40 mt-10 '
             colors={['emerald', 'amber', 'pink']}
           />
-          <div className='mt-6 flex items-center sm:mt-0'>
+          <div className='mt-6 ml-5 flex items-center sm:mt-0'>
             <ul
               role='list'
               className='space-y-3'>
