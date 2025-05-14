@@ -9,7 +9,11 @@ import { useRouter, useParams } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/lib/hooks';
 import { setQuery } from '@/lib/features/query/querySlice';
-import { getTotalQty, getRole } from '@/lib/features/user/userSlice';
+import {
+  getTotalQty,
+  getRole,
+  removeAllFromCart,
+} from '@/lib/features/user/userSlice';
 
 function Header() {
   const dispatch = useDispatch();
@@ -32,6 +36,7 @@ function Header() {
   };
 
   const handleLogout = () => {
+    dispatch(removeAllFromCart());
     router.replace('/auth/user');
   };
 
