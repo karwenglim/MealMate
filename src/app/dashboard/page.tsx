@@ -2,22 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
 import { Pie, Bar } from 'react-chartjs-2';
-import { Product } from '@/types/Product';
-import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import 'leaflet.heat';
+import dynamic from 'next/dynamic';
+
+const MapWithNoSSR = dynamic(() => import('./MapComponent'), {
+  ssr: false,
+  loading: () => <div className="h-80 flex items-center justify-center">Loading map...</div>
+});
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
-
-// Define interfaces
-interface OrderLocation {
-  name: string;
-  count: number;
-  lat?: number;
-  lng?: number;
-}
 
 interface TopSeller {
   name: string;
@@ -30,86 +23,67 @@ interface HeatMapPoint {
   intensity: number;
 }
 
-// HeatMap component
-function HeatMapLayer({ points }: { points: HeatMapPoint[] }) {
-  const map = useMap();
+interface FoodDrinkSalesData {
+  name: string;
+  sales: number;
+}
 
-  useEffect(() => {
-    if (!map || points.length === 0) return;
-
-    const heatData = points.map(point => [
-      point.lat,
-      point.lng,
-      point.intensity
-    ]);
-
-    // @ts-expect-error - leaflet.heat is not typed
-    const heatLayer = L.heatLayer(heatData, {
-      radius: 25,
-      blur: 15,
-      maxZoom: 10,
-      max: Math.max(...points.map(p => p.intensity))
-    }).addTo(map);
-
-    return () => {
-      map.removeLayer(heatLayer);
-    };
-  }, [map, points]);
-
-  return null;
+function getStaticDashboardData() {
+  return {
+    foods: [
+      { name: "Chicken Rice", sales: 120 },
+      { name: "Nasi Lemak", sales: 95 },
+      { name: "Burger", sales: 85 },
+      { name: "Pasta", sales: 70 },
+      { name: "Fried Rice", sales: 65 },
+    ],
+    drinks: [
+      { name: "Bubble Tea", sales: 150 },
+      { name: "Coffee", sales: 130 },
+      { name: "Fruit Juice", sales: 90 },
+      { name: "Milk Tea", sales: 85 },
+      { name: "Soft Drink", sales: 80 },
+    ],
+    sellers: [
+      { name: "Food Corner", sales: 2500 },
+      { name: "Tasty Bites", sales: 2200 },
+      { name: "Quick Meal", sales: 1800 },
+      { name: "Campus Cafe", sales: 1600 },
+      { name: "Snack Shop", sales: 1400 },
+    ],
+    heatMapPoints: [
+      { lat: 3.1201, lng: 101.6553, intensity: 100 },
+      { lat: 3.1250, lng: 101.6700, intensity: 80 },
+      { lat: 3.1180, lng: 101.6400, intensity: 60 },
+      { lat: 3.1300, lng: 101.6800, intensity: 40 },
+      { lat: 3.1150, lng: 101.6300, intensity: 30 }
+    ]
+  };
 }
 
 export default function GeneralDashboard() {
-  const [topFoods, setTopFoods] = useState<Product[]>([]);
-  const [topDrinks, setTopDrinks] = useState<Product[]>([]);
+  const [topFoods, setTopFoods] = useState<FoodDrinkSalesData[]>([]);
+  const [topDrinks, setTopDrinks] = useState<FoodDrinkSalesData[]>([]);
   const [topSellers, setTopSellers] = useState<TopSeller[]>([]);
-  const [orderLocations, setOrderLocations] = useState<OrderLocation[]>([]);
   const [heatMapPoints, setHeatMapPoints] = useState<HeatMapPoint[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  // Fix for Leaflet icons in Next.js
-  useEffect(() => {
-    // This is needed for Leaflet icons to display properly in Next.js
-    delete (L.Icon.Default.prototype as unknown)._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: '/leaflet/marker-icon-2x.png',
-      iconUrl: '/leaflet/marker-icon.png',
-      shadowUrl: '/leaflet/marker-shadow.png',
-    });
-  }, []);
 
   useEffect(() => {
     // In a real implementation, these would be API calls to fetch data
     const fetchDashboardData = async () => {
       try {
-        // Replace these with actual API calls
-        const foodsResponse = await fetch('/api/analytics/top-foods');
-        const drinksResponse = await fetch('/api/analytics/top-drinks');
-        const sellersResponse = await fetch('/api/analytics/top-sellers');
-        const locationsResponse = await fetch('/api/analytics/order-locations');
+        // Use static data instead of API calls
+        const staticData = getStaticDashboardData();
 
-        const foods = await foodsResponse.json();
-        const drinks = await drinksResponse.json();
-        const sellers = await sellersResponse.json();
-        const locations = await locationsResponse.json();
+        setTopFoods(staticData.foods);
+        setTopDrinks(staticData.drinks);
+        setTopSellers(staticData.sellers);
 
-        setTopFoods(foods);
-        setTopDrinks(drinks);
-        setTopSellers(sellers);
-        setOrderLocations(locations);
-
-        // Create heatmap points from the locations
-        // In a real app, your API would return lat/lng data
-        const points: HeatMapPoint[] = locations.map((location: OrderLocation) => ({
-          lat: location.lat || 0,
-          lng: location.lng || 0,
-          intensity: location.count
-        }));
-
-        setHeatMapPoints(points);
+        // Use the locations data directly for heatmap points
+        setHeatMapPoints(staticData.heatMapPoints);
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching dashboard data:', error);
+        console.error('Error setting dashboard data:', error);
         setIsLoading(false);
       }
     };
@@ -177,7 +151,7 @@ export default function GeneralDashboard() {
   ];
 
   const pointsToDisplay = heatMapPoints.length > 0 ? heatMapPoints : mockedHeatMapPoints;
-  const mapCenter = [3.1201, 101.6553]; // Default center (adjust as needed)
+  const mapCenter: [number, number] = [3.1201, 101.6553]; // Default center (adjust as needed)
 
   if (isLoading) {
     return <div className="flex justify-center items-center h-screen">Loading dashboard data...</div>;
@@ -224,18 +198,7 @@ export default function GeneralDashboard() {
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Order Locations Heatmap</h2>
             <div className="h-80" style={{ width: '100%' }}>
-              <MapContainer
-                  center={mapCenter as [number, number]}
-                  zoom={13}
-                  scrollWheelZoom={false}
-                  style={{ height: '100%', width: '100%' }}
-              >
-                <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
-                <HeatMapLayer points={pointsToDisplay} />
-              </MapContainer>
+              <MapWithNoSSR points={pointsToDisplay} center={mapCenter} />
             </div>
           </div>
         </div>
