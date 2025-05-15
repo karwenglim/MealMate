@@ -141,16 +141,7 @@ export default function GeneralDashboard() {
     ],
   };
 
-  // For demo purposes - mocked heatmap data if no real data available
-  const mockedHeatMapPoints: HeatMapPoint[] = [
-    { lat: 3.1201, lng: 101.6553, intensity: 100 }, // Example: Kuala Lumpur
-    { lat: 3.1250, lng: 101.6700, intensity: 80 },
-    { lat: 3.1180, lng: 101.6400, intensity: 60 },
-    { lat: 3.1300, lng: 101.6800, intensity: 40 },
-    { lat: 3.1150, lng: 101.6300, intensity: 30 }
-  ];
-
-  const pointsToDisplay = heatMapPoints.length > 0 ? heatMapPoints : mockedHeatMapPoints;
+  const pointsToDisplay = heatMapPoints.length > 0 ? heatMapPoints : getStaticDashboardData().heatMapPoints;
   const mapCenter: [number, number] = [3.1201, 101.6553]; // Default center (adjust as needed)
 
   if (isLoading) {
