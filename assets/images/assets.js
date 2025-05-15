@@ -9,6 +9,7 @@ import nav_cart_icon from './nav_cart_icon.svg';
 import add_icon from './add_icon.svg';
 import refresh_icon from './refresh_icon.svg';
 import product_list_icon from './product_list_icon.svg';
+import total_customer_icon from './totalCustomer.svg';
 import order_icon from './order_icon.svg';
 import upload_area from './upload_area.png';
 import profile_icon from './profile_icon.png';
@@ -32,11 +33,11 @@ import maggi_image from './maggi_image.png';
 import dairy_product_image from './dairy_product_image.png';
 import bakery_image from './bakery_image.png';
 import grain_image from './grain_image.png';
-
+import total_orders_icon from './total_orders_icon.svg';
 import coca_cola_image from './coca_cola_image.png';
-
+import earn_growth_icon from './earn_growth_icon.svg';
 import pepsi_image from './pepsi_image.png';
-
+import total_revenue_icon from './total_revenue_icon.svg';
 import sprite_image_1 from './sprite_image_1.png';
 import fanta_image_1 from './fanta_image_1.png';
 import seven_up_image_1 from './seven_up_image_1.png';
@@ -74,6 +75,8 @@ import burger_1 from './burger_2.jpg';
 import pasta_1 from './pasta_1.jpg';
 import chicken_chop_1 from './chicken_chop_1.jpg';
 import fish_chips_1 from './fish_chips_1.jpg';
+import filled_star_icon from './filled_star_icon.png';
+import unfilled_star_icon from './unfilled_star_icon.png';
 export const assets = {
   logo,
   search_icon,
@@ -102,6 +105,12 @@ export const assets = {
   bottom_banner_image_sm,
   add_address_iamge,
   box_icon,
+  total_customer_icon,
+  total_orders_icon,
+  earn_growth_icon,
+  total_revenue_icon,
+  filled_star_icon,
+  unfilled_star_icon,
 };
 
 export const categories = [
@@ -886,7 +895,7 @@ export const dummyOrders = [
         _id: '67e2589a8f87e63366786401',
       },
     ],
-    amount: 89,
+    amount: 20,
     address: dummyAddress[0],
     status: 'Order Placed',
     paymentType: 'Online',
@@ -909,7 +918,7 @@ export const dummyOrders = [
         _id: '67e258798f87e633667863f4',
       },
     ],
-    amount: 43,
+    amount: 10,
     address: dummyAddress[0],
     status: 'Order Placed',
     paymentType: 'COD',
