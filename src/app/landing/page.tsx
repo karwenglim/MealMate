@@ -4,6 +4,8 @@ import { assets } from '../../../assets/images/assets';
 import Image from 'next/image';
 import CategoryCollections from '@/components/categories/collections';
 import BestSellerCollections from '@/components/products/bestSellerCollections';
+import Link from 'next/link';
+
 function Landing() {
   return (
     <div className='py-15 px-30 flex flex-col gap-30'>
@@ -26,13 +28,32 @@ function Landing() {
             </div>
           </div>
         </div>
+        {/* Featured dish caption */}
+        <div className='absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded text-sm'>
+          Featured dish on banner: Fruits from KK12 Cafeteria
+        </div>
       </div>
+
+      {/* Seller premium subscription box */}
+      <div className='bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center'>
+        <div className='flex flex-col items-center gap-3'>
+          <p className='text-gray-600 text-lg font-medium'>To sellers: Subscribe to Premium Sellers to feature your food here!</p>
+          <Link href='/seller'>
+            <div className='bg-[#4FBF8B] hover:bg-green-600 transition ease-in-out text-white px-6 py-2 rounded-lg text-sm cursor-pointer mt-2'>
+              Upgrade Now
+            </div>
+          </Link>
+        </div>
+      </div>
+
       <div>
         <CategoryCollections />
       </div>
+
       <div>
         <BestSellerCollections />
       </div>
+
       <div className='relative'>
         <div>
           <Image
