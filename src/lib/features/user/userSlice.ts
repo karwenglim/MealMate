@@ -13,6 +13,8 @@ export interface ProductInCart extends Product {
 export interface Order extends ProductInCart {
   orderId: string;
   date: string;
+  givenRatings?: number;
+  status?: string;
 }
 
 interface UserState {
@@ -220,6 +222,27 @@ export const userSlice = createSlice({
       };
       state.orders.push(formattedOrderProduct);
     },
+    setOrderRating: (
+      state,
+      action: PayloadAction<{ orderId: string; givenRatings: number }>
+    ) => {
+      const { orderId, givenRatings } = action.payload;
+      const order = state.orders.find((o) => o.orderId === orderId);
+      if (order) {
+        order.givenRatings = givenRatings;
+      }
+    },
+
+    setOrderStatus: (
+      state,
+      action: PayloadAction<{ orderId: string; status: string }>
+    ) => {
+      const { orderId, status } = action.payload;
+      const order = state.orders.find((o) => o.orderId === orderId);
+      if (order) {
+        order.status = status;
+      }
+    },
   },
 });
 
@@ -240,6 +263,8 @@ export const {
   setPaymentMethod,
   setRole,
   removeAllFromCart,
+  setOrderRating,
+  setOrderStatus,
 } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user;

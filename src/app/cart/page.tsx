@@ -67,7 +67,9 @@ function CartPage() {
       dispatch(addToOrders(item));
     }
     dispatch(setPaymentMethod(preferredPaymentMethod));
-    router.push('/my-orders');
+    if (preferredPaymentMethod === 'QR Payment') {
+      router.push('/qr-payment');
+    } else router.push('/my-orders');
   };
   return (
     <div className='py-15 px-30 justify-between flex flex-row gap-10 w-full'>
@@ -177,7 +179,7 @@ function CartPage() {
               value={preferredPaymentMethod}
               onChange={(e) => setPreferredPaymentMethod(e.target.value)}>
               <option value='Cash On Delivery'>Cash on Delivery</option>
-              <option value='Touch N Go'>Touch N Go</option>
+              <option value='QR Payment'>QR Payment</option>
             </select>
           </div>
         </div>
@@ -190,16 +192,16 @@ function CartPage() {
             </div>
             <div className='flex flex-row justify-between'>
               <div>Delivery Fee</div>
-              <div>RM{deliveryFee}</div>
+              <div>RM{address.city === '' ? '-' : deliveryFee}</div>
             </div>
             <div className='flex flex-row justify-between'>
               <div>Tax (5%)</div>
-              <div>RM{totalTax}</div>
+              <div>RM{address.city === '' ? '-' : totalTax}</div>
             </div>
           </div>
           <div className=' text-gray-800 flex flex-row justify-between text-2xl'>
             <div className=''>Total Amount</div>
-            <div className=''>RM{allTotal}</div>
+            <div className=''>RM{address.city === '' ? '-' : allTotal}</div>
           </div>
         </div>
 
