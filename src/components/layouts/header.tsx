@@ -66,7 +66,7 @@ function Header() {
           </Link>
         </div>
 
-        <div className='flex flex-row gap-10 items-center justify-end basis-[60%]'>
+        <div className='flex flex-row gap-10 items-center justify-end'>
           {role === 'seller' && (
             <Link href='/seller'>
               <div className='rounded-full text-lg text-gray-500 py-2 px-3 border border-slate-300'>
@@ -74,6 +74,31 @@ function Header() {
               </div>
             </Link>
           )}
+
+          <Link href='/premium'>
+            <div
+              className='
+                rounded-full
+                text-lg
+                text-gray-500
+                py-2
+                px-3
+                border
+                border-slate-300
+                cursor-pointer
+                transition
+                duration-300
+                ease-in-out
+                hover:text-yellow-500
+                hover:border-yellow-500
+                hover:bg-yellow-50
+                active:text-yellow-700
+                active:border-yellow-700
+                active:bg-yellow-100
+                select-none'>
+              Go Premium!
+            </div>
+          </Link>
 
           <Link
             href='/landing'
@@ -87,24 +112,28 @@ function Header() {
           </Link>
           <Link href='/dashboard'>
             <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-gray-600 hover:text-emerald-700"
-                title="Dashboard"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18" />
-              <path d="M9 21V9" />
-              <path d="M6 15h3" />
-              <path d="M12 15h6" />
-              <path d="M12 18h6" />
+              xmlns='http://www.w3.org/2000/svg'
+              width='20'
+              height='20'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              className='text-gray-600 hover:text-emerald-700'>
+              <rect
+                x='3'
+                y='3'
+                width='18'
+                height='18'
+                rx='2'
+              />
+              <path d='M3 9h18' />
+              <path d='M9 21V9' />
+              <path d='M6 15h3' />
+              <path d='M12 15h6' />
+              <path d='M12 18h6' />
             </svg>
           </Link>
 

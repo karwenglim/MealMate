@@ -67,7 +67,7 @@ function Card({ product }: CardProp) {
         </div>
 
         <div className='flex flex-row justify-between items-center '>
-          <div className='text-[#4FBF8B] text-2xl'>RM{product.price}</div>
+          <div className='text-[#4FBF8B] text-xl'>RM{product.price}.00</div>
           <div
             onClick={() =>
               handleOnClick({
@@ -75,7 +75,7 @@ function Card({ product }: CardProp) {
                 id: product._id,
               })
             }
-            className='text-[#6CC99E] text-xl flex flex-row gap-2 items-center border border-[#6CC99E] rounded-lg py-2 px-4 hover:cursor-pointer'>
+            className='text-[#6CC99E] text-xl flex flex-row gap-2 items-center border border-[#6CC99E] rounded-lg py-1 px-2 hover:cursor-pointer'>
             <Image
               alt='addToCartIcon'
               src={cartIcon}

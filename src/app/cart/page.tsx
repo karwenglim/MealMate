@@ -24,13 +24,14 @@ import { assets } from '../../../assets/images/assets';
 import { useRouter } from 'next/navigation';
 
 function CartPage() {
+  const formatPrice = (amount: number) => amount.toFixed(2);
   const dispatch = useDispatch();
   const totalQty = useAppSelector(getTotalQty);
   const cart = useAppSelector(getCart);
-  const allSubtotal = useAppSelector(getAllSubtotal);
-  const allTotal = useAppSelector(getAllTotal);
-  const deliveryFee = useAppSelector(getUserDeliveryFee);
-  const totalTax = useAppSelector(getTotalTax);
+  const allSubtotal = formatPrice(useAppSelector(getAllSubtotal));
+  const allTotal = formatPrice(useAppSelector(getAllTotal));
+  const deliveryFee = formatPrice(useAppSelector(getUserDeliveryFee));
+  const totalTax = formatPrice(useAppSelector(getTotalTax));
   const address = useAppSelector(getAddress);
   const router = useRouter();
   const [preferredPaymentMethod, setPreferredPaymentMethod] =
@@ -114,7 +115,7 @@ function CartPage() {
                 </div>
 
                 <div className='basis-[20%] text-xl font-semibold justify-center flex flex-row'>
-                  RM {cartItem.quantity * cartItem.price}
+                  RM {formatPrice(cartItem.quantity * cartItem.price)}
                 </div>
 
                 <div className='basis-[20%] justify-center flex flex-row'>

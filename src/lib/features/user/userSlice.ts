@@ -53,22 +53,26 @@ const initialState: UserState = {
   paymentMethod: '',
 };
 
-const getTaxAmt = (quantity: number, price: number) => {
+const getTaxAmt = (quantity: number, price: number): number => {
   return Number((0.05 * quantity * price).toFixed(2));
 };
 
-const getDeliveryFee = () => {
-  return Math.floor(Math.random() * 5 + 1);
+const getDeliveryFee = (): number => {
+  return Number(Math.floor(Math.random() * 5 + 1).toFixed(2));
 };
 
-const getSubtotal = (quantity: number, price: number) => {
-  return quantity * price;
+const getSubtotal = (quantity: number, price: number): number => {
+  return Number((quantity * price).toFixed(2));
 };
 
-const getTotalAmt = (state: UserState, quantity: number, price: number) => {
+const getTotalAmt = (
+  state: UserState,
+  quantity: number,
+  price: number
+): number => {
   const taxAmt = getTaxAmt(quantity, price);
   const subTotal = getSubtotal(quantity, price);
-  return taxAmt + subTotal;
+  return Number((taxAmt + subTotal).toFixed(2));
 };
 
 export const userSlice = createSlice({

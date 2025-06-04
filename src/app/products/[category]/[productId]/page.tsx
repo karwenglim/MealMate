@@ -121,7 +121,7 @@ function ProductPage() {
           </div>
           <div className='flex flex-col gap-1'>
             <div className='text-3xl text-[#36415F]'>
-              Price : RM{foundProduct?.price}
+              Price : RM{foundProduct?.price}.00
             </div>
           </div>
           <div className='flex flex-col gap-1'>
