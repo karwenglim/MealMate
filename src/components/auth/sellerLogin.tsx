@@ -89,7 +89,7 @@ const SellerLogin = () => {
             <div className='mt-8 flex justify-center items-center'>
               <p className='font-medium text-base'>Running a rider account?</p>
               <Link href='/auth/rider'>
-                <button className='ml-2 font-medium cursor-pointer text-base text-green-500'>
+                <button className='ml-2 font-medium cursor-pointer text-base text-green-600'>
                   Sign in as a rider
                 </button>
               </Link>
