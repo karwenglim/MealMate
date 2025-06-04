@@ -75,8 +75,16 @@ const UserLogIn = () => {
                 Running a merchant account?
               </p>
               <Link href='/auth/seller'>
-                <button className='ml-2 font-medium text-base text-violet-500'>
+                <button className='ml-2 font-medium cursor-pointer text-base text-violet-500'>
                   Sign in as a merchant
+                </button>
+              </Link>
+            </div>
+            <div className='mt-8 flex justify-center items-center'>
+              <p className='font-medium text-base'>Running a rider account?</p>
+              <Link href='/auth/rider'>
+                <button className='ml-2 cursor-pointer font-medium text-base text-green-500'>
+                  Sign in as a rider
                 </button>
               </Link>
             </div>

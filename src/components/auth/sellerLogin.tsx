@@ -81,8 +81,16 @@ const SellerLogin = () => {
                 Don&apos;t have a merchant account?
               </p>
               <Link href='/auth/user'>
-                <button className='ml-2 font-medium text-base text-violet-500'>
+                <button className='ml-2 font-medium text-base cursor-pointer text-violet-500'>
                   Login as a user
+                </button>
+              </Link>
+            </div>
+            <div className='mt-8 flex justify-center items-center'>
+              <p className='font-medium text-base'>Running a rider account?</p>
+              <Link href='/auth/rider'>
+                <button className='ml-2 font-medium cursor-pointer text-base text-green-500'>
+                  Sign in as a rider
                 </button>
               </Link>
             </div>

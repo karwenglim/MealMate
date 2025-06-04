@@ -83,7 +83,7 @@ const RiderLogIn = () => {
             <div className='mt-8 flex justify-center items-center'>
               <p className='font-medium text-base'>Not a rider?</p>
               <Link href='/auth/user'>
-                <button className='ml-2 font-medium text-base text-green-600'>
+                <button className='ml-2 font-medium cursor-pointer text-base text-purple-600'>
                   Sign in as a user
                 </button>
               </Link>
