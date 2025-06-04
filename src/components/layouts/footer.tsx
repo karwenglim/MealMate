@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 function Footer() {
   return (
     <div className='px-10 py-6 gap-8 bg-[#EDF8F3] justify-between flex flex-col'>
@@ -40,7 +40,11 @@ function Footer() {
           <div className='flex flex-col gap-5'>
             <div className='text-lg font-semibold'>Follow Us</div>
             <div className='flex flex-col gap-3 text-gray-600 '>
-              <div>Instagram</div>
+              <Link
+                href='https://www.instagram.com/mealmate_um?igsh=NXdqOW4wbDYybTJu'
+                target='_blank'>
+                Instagram
+              </Link>
               <div>Twitter</div>
               <div>Facebook</div>
               <div>YouTube</div>
