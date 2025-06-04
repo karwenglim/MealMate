@@ -30,7 +30,7 @@ const RiderLogIn = () => {
     // Simulate login delay
     setTimeout(() => {
       dispatch(setRole('rider'));
-      router.push('/rider-landing');
+      router.push('/rider');
       setIsLoggingIn(false);
     }, 1000);
   };
