@@ -24,6 +24,7 @@ import { assets } from '../../../assets/images/assets';
 import { useRouter } from 'next/navigation';
 
 function CartPage() {
+  const [orderMethod, setOrderMethod] = useState<string>('Delivery');
   const formatPrice = (amount: number) => amount.toFixed(2);
   const dispatch = useDispatch();
   const totalQty = useAppSelector(getTotalQty);
@@ -38,6 +39,10 @@ function CartPage() {
     useState<string>('Cash On Delivery');
   const handleAddQuantity = (cartItem: ProductInCart) => {
     dispatch(addToCart(cartItem));
+  };
+
+  const handleChangeOrderMethod = (selectedOrderMethod: string) => {
+    setOrderMethod(selectedOrderMethod);
   };
 
   const handleRemoveButton = (cartItem: ProductInCart) => {
@@ -139,11 +144,32 @@ function CartPage() {
           Order Summary
         </div>
 
-        <div className='flex flex-col gap-5'>
+        <div className='flex flex-row gap-[10px]'>
+          <button
+            onClick={() => handleChangeOrderMethod('Delivery')}
+            className={`py-[10px] px-[20px] rounded-lg ${
+              orderMethod === 'Delivery'
+                ? 'bg-green-500 text-white'
+                : 'bg-green-100 border-green-500 text-green-500'
+            } rounded-lg`}>
+            Delivery
+          </button>
+          <button
+            onClick={() => handleChangeOrderMethod('Pickup')}
+            className={`py-[10px] px-[20px] rounded-lg ${
+              orderMethod === 'Pickup'
+                ? 'bg-green-500 text-white'
+                : 'bg-green-100 border-green-500 text-green-500'
+            } rounded-lg`}>
+            Pickup
+          </button>{' '}
+        </div>
+        {orderMethod === 'Delivery' && (
           <div className='flex flex-col gap-3'>
             <div className='text-xl text-[#36415F] font-semibold'>
               DELIVERY ADDRESS
             </div>
+
             <div className='flex flex-row '>
               {address.zipcode === '' ? (
                 <div className='justify-between flex-row'>
@@ -168,6 +194,9 @@ function CartPage() {
               )}
             </div>
           </div>
+        )}
+
+        <div className='flex flex-col gap-5'>
           <div className='flex flex-col gap-3'>
             <div className='text-xl text-[#36415F] font-semibold'>
               PAYMENT METHOD
@@ -178,7 +207,16 @@ function CartPage() {
               id='preferredPaymentMethod'
               value={preferredPaymentMethod}
               onChange={(e) => setPreferredPaymentMethod(e.target.value)}>
-              <option value='Cash On Delivery'>Cash on Delivery</option>
+              <option
+                value=''
+                disabled
+                defaultValue=''>
+                Select Payment
+              </option>
+
+              {orderMethod === 'Delivery' && (
+                <option value='Cash On Delivery'>Cash on Delivery</option>
+              )}
               <option value='QR Payment'>QR Payment</option>
             </select>
           </div>
@@ -190,10 +228,12 @@ function CartPage() {
               <div>Price</div>
               <div>RM{allSubtotal}</div>
             </div>
-            <div className='flex flex-row justify-between'>
-              <div>Delivery Fee</div>
-              <div>RM{address.city === '' ? '-' : deliveryFee}</div>
-            </div>
+            {orderMethod === 'Delivery' && (
+              <div className='flex flex-row justify-between'>
+                <div>Delivery Fee</div>
+                <div>RM{address.city === '' ? '-' : deliveryFee}</div>
+              </div>
+            )}
             <div className='flex flex-row justify-between'>
               <div>Tax (5%)</div>
               <div>RM{address.city === '' ? '-' : totalTax}</div>
