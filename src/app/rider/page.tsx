@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { dummyOrders } from '../../../assets/images/assets';
 
 const formatPrice = (amount: number) => amount.toFixed(2);
-const COMMISSION_PERCENTAGE = 0.15;
+const COMMISSION_PERCENTAGE = 0.1;
 
 type OrderWithLocation = (typeof dummyOrders)[0] & {
   dormLocation: string;
@@ -104,7 +104,7 @@ export default function RiderLandingPage() {
             Amount: RM{formatPrice(order.amount)}
           </div>
           <div className='text-blue-600 font-semibold'>
-            Earnings (15%): RM{formatPrice(riderEarnings)}
+            Earnings (10%): RM{formatPrice(riderEarnings)}
           </div>
           <div className='flex gap-3'>
             {showPickUp && onPickUp && (
