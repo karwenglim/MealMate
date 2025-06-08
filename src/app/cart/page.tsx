@@ -155,6 +155,7 @@ function CartPage() {
             Delivery
           </button>
           <button
+            disabled
             onClick={() => handleChangeOrderMethod('Pickup')}
             className={`py-[10px] px-[20px] rounded-lg ${
               orderMethod === 'Pickup'
